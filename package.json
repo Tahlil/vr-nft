@@ -1,0 +1,19 @@
+{
+  "name": "vr-nft",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git remote add origin https://github.com/Tahlil/vr-nft.git"
+  },
+  "keywords": [
+    "nft",
+    "VR"
+  ],
+  "author": "Tahlil",
+  "license": "ISC"
+}
