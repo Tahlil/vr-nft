@@ -140,10 +140,11 @@ contract SpaceToken is ERC721, Ownable {
     }
 
     modifier isInWhiteListNFT(string memory nameToCheck) {
-        
+        require(!checkEmptyString(whitelistedNFT[nameToCheck].description), "Not in the whitlist");
+        _;
     }
 
-    function safeMint(address to, string memory name) public onlyOwner {
+    function safeMint(address to, string memory name) public onlyOwner isInWhiteListNFT(name) {
         uint256 tokenId = _tokenIdCounter.current();
         nftDetails[tokenId] = name;
         _tokenIdCounter.increment();
