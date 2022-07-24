@@ -159,7 +159,7 @@ contract SpaceToken is ERC721, Ownable, ReentrancyGuard {
         _safeMint(to, tokenId);
     }
 
-    function getMintStatus(string memory nameToCheck) public view isInWhiteListNFT(name) returns(bool){
+    function getMintStatus(string memory nameToCheck) public view isInWhiteListNFT(nameToCheck) returns(bool){
         return whitelistedNFT[nameToCheck].minted;
     }
 }
