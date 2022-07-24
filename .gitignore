@@ -116,5 +116,6 @@ dist
 .pnp.*
 
 #Hardhat
-artifats
+artifacts
 cache
+typechain-types
