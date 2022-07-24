@@ -26,6 +26,7 @@ contract SpaceToken is ERC721, Ownable {
         uint256 dayValue;
         uint256 yearValue; 
     }
+    mapping (uint256=>string) nftDetails;
 
     mapping (string=>SpaceObjDetails) private whitelistedNFT;
 
@@ -134,13 +135,11 @@ contract SpaceToken is ERC721, Ownable {
         );
     }
 
-    
-
-    function safeMint(address to) public onlyOwner {
+    function safeMint(address to, string memory name) public onlyOwner {
         uint256 tokenId = _tokenIdCounter.current();
+        nftDetails[tokenId] = name;
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
-
     }
 }
 
