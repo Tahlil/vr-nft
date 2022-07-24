@@ -135,6 +135,14 @@ contract SpaceToken is ERC721, Ownable {
         );
     }
 
+    function checkEmptyString(string memory s) public pure returns(bool){
+       return keccak256(abi.encode("")) ==keccak256(abi.encode(s));
+    }
+
+    modifier isInWhiteListNFT(string memory nameToCheck) {
+        
+    }
+
     function safeMint(address to, string memory name) public onlyOwner {
         uint256 tokenId = _tokenIdCounter.current();
         nftDetails[tokenId] = name;
