@@ -4,11 +4,13 @@ pragma solidity ^0.8.14;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+
 
 import "hardhat/console.sol";
 
 
-contract SpaceToken is ERC721, Ownable {
+contract SpaceToken is ERC721, Ownable, ReentrancyGuard {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
@@ -149,7 +151,7 @@ contract SpaceToken is ERC721, Ownable {
         _;
     }
 
-    function safeMint(address to, string memory name) public onlyOwner isInWhiteListNFT(name) notMinted(name) {
+    function safeMint(address to, string memory name) public onlyOwner isInWhiteListNFT(name) notMinted(name) nonReentrant {
         uint256 tokenId = _tokenIdCounter.current();
         nftDetails[tokenId] = name;
         whitelistedNFT[name].minted = true;
