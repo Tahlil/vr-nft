@@ -1,5 +1,4 @@
 import "@nomicfoundation/hardhat-toolbox";
-require('@nomiclabs/hardhat-waffle');
 require('hardhat-abi-exporter');
 require('dotenv').config()
 
