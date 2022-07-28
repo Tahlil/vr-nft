@@ -135,6 +135,19 @@ contract SpaceToken is ERC721, Ownable, ReentrancyGuard {
         16100000,
         59800000000
         );
+
+        whitelistedNFT["JamesWebbTelescope"] = SpaceObjDetails(
+        "As the largest optical telescope in space, its greatly improved infrared resolution and sensitivity allow it to view objects too early, distant, or faint for the Hubble Space Telescope",
+        false,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+        );
     }
 
     function checkEmptyString(string memory s) public pure returns(bool){
