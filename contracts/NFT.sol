@@ -159,6 +159,11 @@ contract SpaceToken is ERC721, Ownable, ReentrancyGuard {
         _;
     }
 
+    modifier notInWhiteListNFT(string memory nameToCheck) {
+        require(checkEmptyString(whitelistedNFT[nameToCheck].description), "Already in the whitlist");
+        _;
+    }
+
     modifier notMinted(string memory nameToCheck) {
         require(!whitelistedNFT[nameToCheck].minted, "Already minted");
         _;
@@ -174,6 +179,22 @@ contract SpaceToken is ERC721, Ownable, ReentrancyGuard {
 
     function getMintStatus(string memory nameToCheck) public view isInWhiteListNFT(nameToCheck) returns(bool){
         return whitelistedNFT[nameToCheck].minted;
+    }
+
+    function addToWhiteListedNFT(
+        string calldata description,
+        bool minted,
+        uint256 gravityValue,
+        uint256 massValue,
+        uint256 radiusValue,
+        uint256 velocityValue,
+        uint256 distanceValue,
+        int256 temperatureValue,
+        uint256 dayValue,
+        uint256 yearValue,
+        string memory name
+    ) public onlyOwner notInWhiteListNFT(name) {
+        
     }
 }
 
