@@ -181,32 +181,32 @@ contract SpaceToken is ERC721, Ownable, ReentrancyGuard {
         return whitelistedNFT[nameToCheck].minted;
     }
 
-    function addToWhiteListedNFT(
-        string calldata description,
-        uint256 gravityValue,
-        uint256 massValue,
-        uint256 radiusValue,
-        uint256 velocityValue,
-        uint256 distanceValue,
-        int256 temperatureValue,
-        uint256 dayValue,
-        uint256 yearValue,
-        string calldata name
-    ) public onlyOwner notInWhiteListNFT(name) {
-        require(!checkEmptyString(description), "Description can't be empty");
-        whitelistedNFT[name] = SpaceObjDetails(
-            description,
-            false,
-            gravityValue,
-            massValue,
-            radiusValue,
-            velocityValue,
-            distanceValue,
-            temperatureValue,
-            dayValue,
-            yearValue
-        );
-    }
+    // function addToWhiteListedNFT(
+    //     string calldata description,
+    //     uint256 gravityValue,
+    //     uint256 massValue,
+    //     uint256 radiusValue,
+    //     uint256 velocityValue,
+    //     uint256 distanceValue,
+    //     int256 temperatureValue,
+    //     uint256 dayValue,
+    //     uint256 yearValue,
+    //     string calldata name
+    // ) public onlyOwner notInWhiteListNFT(name) {
+    //     require(!checkEmptyString(description), "Description can't be empty");
+    //     whitelistedNFT[name] = SpaceObjDetails(
+    //         description,
+    //         false,
+    //         gravityValue,
+    //         massValue,
+    //         radiusValue,
+    //         velocityValue,
+    //         distanceValue,
+    //         temperatureValue,
+    //         dayValue,
+    //         yearValue
+    //     );
+    // }
 
     function getOwner(string memory name) public view isInWhiteListNFT(name) returns(address){
         address owner = ownerOf(nftDetails[name]);
