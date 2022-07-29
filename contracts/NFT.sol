@@ -28,7 +28,7 @@ contract SpaceToken is ERC721, Ownable, ReentrancyGuard {
         uint256 dayValue;
         uint256 yearValue; 
     }
-    mapping (uint256=>string) nftDetails;
+    mapping (string=>uint256) nftDetails;
 
     mapping (string=>SpaceObjDetails) private whitelistedNFT;
 
@@ -171,7 +171,7 @@ contract SpaceToken is ERC721, Ownable, ReentrancyGuard {
 
     function safeMint(address to, string memory name) public onlyOwner isInWhiteListNFT(name) notMinted(name) nonReentrant {
         uint256 tokenId = _tokenIdCounter.current();
-        nftDetails[tokenId] = name;
+        nftDetails[name] = tokenId;
         whitelistedNFT[name].minted = true;
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
@@ -206,6 +206,12 @@ contract SpaceToken is ERC721, Ownable, ReentrancyGuard {
             dayValue,
             yearValue
         );
+    }
+
+    function getOwner(string memory name) public view isInWhiteListNFT(name) returns(address){
+        address owner = ownerOf(nftDetails[name]);
+        require(owner != address(0), "Token is not minted");
+        return owner;
     }
 }
 
