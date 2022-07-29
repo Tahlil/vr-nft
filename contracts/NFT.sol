@@ -183,7 +183,6 @@ contract SpaceToken is ERC721, Ownable, ReentrancyGuard {
 
     function addToWhiteListedNFT(
         string calldata description,
-        bool minted,
         uint256 gravityValue,
         uint256 massValue,
         uint256 radiusValue,
@@ -192,9 +191,21 @@ contract SpaceToken is ERC721, Ownable, ReentrancyGuard {
         int256 temperatureValue,
         uint256 dayValue,
         uint256 yearValue,
-        string memory name
+        string calldata name
     ) public onlyOwner notInWhiteListNFT(name) {
-        
+        require(!checkEmptyString(description), "Description can't be empty");
+        whitelistedNFT[name] = SpaceObjDetails(
+            description,
+            false,
+            gravityValue,
+            massValue,
+            radiusValue,
+            velocityValue,
+            distanceValue,
+            temperatureValue,
+            dayValue,
+            yearValue
+        );
     }
 }
 
